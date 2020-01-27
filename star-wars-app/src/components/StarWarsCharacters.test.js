@@ -1,10 +1,7 @@
 import React from 'react';
 import { render, fireEvent } from '@testing-library/react';
 import StarWarsCharacters from './StarWarsCharacters';
-//import {getData as mockGetData} from '../api';
 
-
-//jest.mock('../api');
 
 test('Renders with Previous and Next Buttons', () => {
     
@@ -20,6 +17,7 @@ test('Next Button returns next URL', () => {
     const nextButton = getByText(/Next/i);
 
     fireEvent.click(nextButton, {url:'https://swapi.co/api/people/?page=2'})
+
 });
 
 test('Previous Button returns null on first invo', () => {
@@ -28,4 +26,12 @@ test('Previous Button returns null on first invo', () => {
     const prevButton = getByText(/Previous/i);
 
     fireEvent.click(prevButton, {url:null})
+});
+
+test('Divs with character class names load!', () => {
+
+    const { queryByTestId } = render(<StarWarsCharacters/>);
+    
+    queryByTestId(/character/i);
+
 });
